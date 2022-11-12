@@ -20,25 +20,22 @@ const validator = [
 
 const handler = async (request: express.Request, response: express.Response) => {
 
-
-    throw new Error('Error')
-
-    let where: FindOptionsWhere<User> = { };
+    let where: FindOptionsWhere<User> = {};
 
     if (request.query['isActive']) {
-        where = { ...where, isActive: request.query['isActive'] === 'true'}
+        where = { ...where, isActive: request.query['isActive'] === 'true' }
     }
 
     if (request.query['firstName']) {
-        where = { ...where, firstName: Like(`${request.query['firstName']}%`)}
+        where = { ...where, firstName: Like(`${request.query['firstName']}%`) }
     }
 
     if (request.query['lastName']) {
-        where = { ...where, lastName: Like(`${request.query['lastName']}%`)}
+        where = { ...where, lastName: Like(`${request.query['lastName']}%`) }
     }
 
     if (request.query['email']) {
-        where = { ...where, email: Like(`${request.query['email']}%`)}
+        where = { ...where, email: Like(`${request.query['email']}%`) }
     }
 
     let users = await AppDataSource.getRepository(User).find({
