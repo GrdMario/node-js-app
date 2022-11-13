@@ -1,11 +1,15 @@
 import { Request, Response } from 'express';
-import { param } from 'express-validator';
+import { checkSchema } from 'express-validator';
 import { AppDataSource } from '../../common/database/context';
 import { User } from '../db/user';
 
-const validator = [
-    param('userId').isAlphanumeric()
-];
+const validator = checkSchema({
+    userId: {
+        in: 'params',
+        errorMessage: 'User id is required.',
+        isInt: true
+    }
+})
 
 const handler = async (request: Request, response: Response) => {
 

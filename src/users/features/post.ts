@@ -1,16 +1,36 @@
 import { Request, Response } from 'express';
 
-import { body } from 'express-validator';
+import { checkSchema } from 'express-validator';
 import { AppDataSource } from '../../common/database/context';
 import { User } from '../db/user';
 
-const validator = [
-    body('firstName').isAlphanumeric(),
-    body('lastName').isAlphanumeric(),
-    body('username').isAlphanumeric(),
-    body('email').isEmail(),
-    body('isActive').isBoolean()
-];
+const validator = checkSchema({
+    firstName: {
+        in: ['body'],
+        errorMessage: 'First name is required',
+        isAlphanumeric: true
+    },
+    lastName: {
+        in: ['body'],
+        errorMessage: 'Last name is required',
+        isAlphanumeric: true
+    },
+    username: {
+        in: ['body'],
+        errorMessage: 'User name is required',
+        isAlphanumeric: true
+    },
+    email: {
+        in: ['body'],
+        errorMessage: 'Email is required',
+        isEmail: true
+    },
+    isActive: {
+        in: ['body'],
+        errorMessage: 'Is Active is required',
+        isBoolean: true
+    }
+});
 
 const handler = async (request: Request, response: Response) => {
 

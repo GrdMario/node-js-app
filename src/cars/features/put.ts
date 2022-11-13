@@ -1,16 +1,41 @@
 import { Request, Response } from 'express';
 
-import { body, param } from 'express-validator';
+import { checkSchema } from 'express-validator';
 import { AppDataSource } from '../../common/database/context';
 import { Car } from '../db/car';
 
-const validator = [
-    param('carId').isAlphanumeric(),
-    body('make').isAlphanumeric(),
-    body('model').isAlphanumeric(),
-    body('weight').isNumeric(),
-    body('color').isAlphanumeric(),
-];
+const validator = checkSchema({
+    carId: {
+        in: ['body'],
+        errorMessage: 'Car id is required.',
+        isNumeric: true
+    },
+    make: {
+        in: ['body'],
+        errorMessage: 'Make is required.',
+        isAlphanumeric: true
+    },
+    model: {
+        in: ['body'],
+        errorMessage: 'Model is required',
+        isAlphanumeric: true
+    },
+    weight: {
+        in: ['body'],
+        errorMessage: 'User name is required',
+        isNumeric: true
+    },
+    email: {
+        in: ['body'],
+        errorMessage: 'Email is required',
+        isEmail: true
+    },
+    color: {
+        in: ['body'],
+        errorMessage: 'Color is required',
+        isAlphanumeric: true
+    }
+});
 
 const handler = async (request: Request, response: Response) => {
 

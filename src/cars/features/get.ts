@@ -1,22 +1,30 @@
 import { Request, Response } from 'express';
-import { query } from 'express-validator';
+import { checkSchema, query } from 'express-validator';
 import { AppDataSource } from '../../common/database/context';
 import { Car } from '../db/car';
 
 import { FindOptionsWhere, Like } from 'typeorm';
 
-const validator = [
-    query('skip')
-        .isNumeric()
-        .withMessage('Skip must be a number.')
-        .notEmpty()
-        .withMessage('Skip is required.'),
-    query('take')
-        .isNumeric()
-        .withMessage('Take must be a number.')
-        .notEmpty()
-        .withMessage('Take is required.'),
-];
+const validator = checkSchema({
+    skip: {
+        in: ['query'],
+        isNumeric: {
+            errorMessage: 'Skip must be a number.',
+        },
+        notEmpty: {
+            errorMessage: 'Skip is required.'
+        }
+    },
+    take: {
+        in: ['query'],
+        isNumeric: {
+            errorMessage: 'Take must be a number.',
+        },
+        notEmpty: {
+            errorMessage: 'Take is required.'
+        }
+    },
+});
 
 const handler = async (request: Request, response: Response) => {
 
