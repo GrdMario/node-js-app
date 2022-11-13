@@ -9,33 +9,39 @@ const validator =
     checkSchema({
         userId: {
             in: ['params'],
-            errorMessage: 'Id is required',
-            isInt: true
+            isInt: {
+                errorMessage: 'Id is required',
+            }
         },
         firstName: {
             in: ['body'],
-            errorMessage: 'First name is required',
-            isAlphanumeric: true
+            isAlphanumeric: {
+                errorMessage: 'First name is required',
+            }
         },
         lastName: {
             in: ['body'],
-            errorMessage: 'Last name is required',
-            isAlphanumeric: true
+            isAlphanumeric: {
+                errorMessage: 'Last name is required',
+            }
         },
         username: {
             in: ['body'],
-            errorMessage: 'User name is required',
-            isAlphanumeric: true
+            isAlphanumeric: {
+                errorMessage: 'User name is required',
+            }
         },
         email: {
             in: ['body'],
-            errorMessage: 'Email is required',
-            isEmail: true
+            isEmail: {
+                errorMessage: 'Email is required',
+            }
         },
         isActive: {
             in: ['body'],
-            errorMessage: 'Is Active is required',
-            isBoolean: true
+            isBoolean: {
+                errorMessage: 'Is Active is required',
+            }
         }
     });
 

@@ -8,28 +8,33 @@ import { Car } from '../db/car';
 const validator = checkSchema({
     make: {
         in: ['body'],
-        errorMessage: 'Make is required.',
-        isAlphanumeric: true
+        isAlphanumeric: {
+            errorMessage: 'Make is required.',
+        }
     },
     model: {
         in: ['body'],
-        errorMessage: 'Model is required',
-        isAlphanumeric: true
+        isAlphanumeric: {
+            errorMessage: 'Model is required',
+        }
     },
     weight: {
         in: ['body'],
-        errorMessage: 'User name is required',
-        isNumeric: true
+        isNumeric: {
+            errorMessage: 'User name is required',
+        }
     },
     email: {
         in: ['body'],
-        errorMessage: 'Email is required',
-        isEmail: true
+        isEmail: {
+            errorMessage: 'Email is required',
+        }
     },
     color: {
         in: ['body'],
-        errorMessage: 'Color is required',
-        isAlphanumeric: true
+        isAlphanumeric: {
+            errorMessage: 'Color is required',
+        }
     }
 });
 

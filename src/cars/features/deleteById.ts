@@ -7,8 +7,9 @@ import { Car } from '../db/car';
 const validator = checkSchema({
     carId: {
         in: 'params',
-        errorMessage: 'User id is required.',
-        isInt: true
+        isInt: {
+            errorMessage: 'User id is required.',
+        }
     }
 });
 

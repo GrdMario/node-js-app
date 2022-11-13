@@ -8,28 +8,33 @@ import { User } from '../db/user';
 const validator = checkSchema({
     firstName: {
         in: ['body'],
-        errorMessage: 'First name is required',
-        isAlphanumeric: true
+        isAlphanumeric: {
+            errorMessage: 'First name is requried'
+        }
     },
     lastName: {
         in: ['body'],
-        errorMessage: 'Last name is required',
-        isAlphanumeric: true
+        isAlphanumeric: {
+            errorMessage: 'Last name is required'
+        }
     },
     username: {
         in: ['body'],
-        errorMessage: 'User name is required',
-        isAlphanumeric: true
+        isAlphanumeric: {
+            errorMessage: 'User name is required'
+        }
     },
     email: {
         in: ['body'],
-        errorMessage: 'Email is required',
-        isEmail: true
+        isEmail: {
+            errorMessage: 'Email is required'
+        }
     },
     isActive: {
         in: ['body'],
-        errorMessage: 'Is Active is required',
-        isBoolean: true
+        isBoolean: {
+            errorMessage: 'Is Active is required'
+        }
     }
 });
 

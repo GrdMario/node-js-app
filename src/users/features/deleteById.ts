@@ -7,8 +7,9 @@ import { User } from '../db/user';
 const validator = checkSchema({
     userId: {
         in: 'params',
-        errorMessage: 'User id is required.',
-        isInt: true
+        isInt: {
+            errorMessage: 'User id must be a number.'
+        }
     }
 });
 
