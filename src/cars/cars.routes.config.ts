@@ -16,13 +16,13 @@ export class CarsRoutes extends CommonRoutesConfig {
     configure(): Application {
 
         this.app.route(`/cars`)
-            .get(get.validator, validationHandler, get.handler)
-            .post(post.validator, validationHandler, post.handler);
+            .get(...get)
+            .post(...post);
 
         this.app.route(`/cars/:carId`)
-            .get(getById.validator, validationHandler, getById.handler)
-            .put(put.validator, validationHandler, put.handler)
-            .delete(deleteById.validator, validationHandler, deleteById.handler);
+            .get(...getById)
+            .put(...put)
+            .delete(...deleteById);
 
         return this.app;
     }

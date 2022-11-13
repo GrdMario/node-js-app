@@ -1,9 +1,10 @@
 import { Request, Response } from 'express';
-import { checkSchema, query } from 'express-validator';
+import { checkSchema } from 'express-validator';
 import { AppDataSource } from '../../common/database/context';
 import { Car } from '../db/car';
 
 import { FindOptionsWhere, Like } from 'typeorm';
+import { validationHandler } from '../../common/handlers/validation.handler';
 
 const validator = checkSchema({
     skip: {
@@ -51,7 +52,8 @@ const handler = async (request: Request, response: Response) => {
     response.status(200).send(cars);
 }
 
-export const get = {
+export const get = [
     validator,
+    validationHandler,
     handler
-}
+];

@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import { checkSchema } from 'express-validator';
 import { AppDataSource } from '../../common/database/context';
+import { validationHandler } from '../../common/handlers/validation.handler';
 import { User } from '../db/user';
 
 const validator = checkSchema({
@@ -18,7 +19,8 @@ const handler = async (request: Request, response: Response) => {
     response.status(200).send(user);
 }
 
-export const getById = {
+export const getById = [
     validator,
+    validationHandler,
     handler
-}
+]

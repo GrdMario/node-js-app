@@ -4,6 +4,7 @@ import { AppDataSource } from '../../common/database/context';
 import { User } from '../db/user';
 
 import { FindOptionsWhere, Like } from 'typeorm';
+import { validationHandler } from '../../common/handlers/validation.handler';
 
 const validator = checkSchema({
     skip: {
@@ -55,7 +56,8 @@ const handler = async (request: Request, response: Response) => {
     response.status(200).send(users);
 }
 
-export const get = {
+export const get = [
     validator,
+    validationHandler,
     handler
-}
+]
