@@ -6,8 +6,6 @@ import { deleteById } from "./features/deleteById";
 import { get } from "./features/get";
 import { getById } from "./features/getById";
 
-import { validationHandler } from "../common/handlers/validation.handler";
-
 export class CarsRoutes extends CommonRoutesConfig {
     constructor(app: Application) {
         super(app);
