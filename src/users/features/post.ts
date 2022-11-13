@@ -1,10 +1,10 @@
-import express from 'express';
+import { Request, Response } from 'express';
 
 import { body } from 'express-validator';
 import { AppDataSource } from '../../common/database/context';
 import { User } from '../db/user';
 
-const validator =  [
+const validator = [
     body('firstName').isAlphanumeric(),
     body('lastName').isAlphanumeric(),
     body('username').isAlphanumeric(),
@@ -12,11 +12,11 @@ const validator =  [
     body('isActive').isBoolean()
 ];
 
-const handler = async (request: express.Request, response: express.Response) => {
+const handler = async (request: Request, response: Response) => {
 
-    const user : User = {...request.body};
+    const user: User = { ...request.body };
 
-    await AppDataSource.getRepository(User).save(user)
+    await AppDataSource.getRepository(User).save(user);
 
     response.status(204).send(user);
 }

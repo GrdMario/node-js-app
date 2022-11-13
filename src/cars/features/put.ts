@@ -1,10 +1,10 @@
-import express from 'express';
+import { Request, Response } from 'express';
 
 import { body, param } from 'express-validator';
 import { AppDataSource } from '../../common/database/context';
 import { Car } from '../db/car';
 
-const validator =  [
+const validator = [
     param('carId').isAlphanumeric(),
     body('make').isAlphanumeric(),
     body('model').isAlphanumeric(),
@@ -12,17 +12,17 @@ const validator =  [
     body('color').isAlphanumeric(),
 ];
 
-const handler = async (request: express.Request, response: express.Response) => {
+const handler = async (request: Request, response: Response) => {
 
-    const repo =  AppDataSource.getRepository(Car);
+    const repo = AppDataSource.getRepository(Car);
 
-    let car = await repo.findOneBy({ id : +request.params['carId']});
+    let car = await repo.findOneBy({ id: +request.params['carId'] });
 
     if (!car) {
         return response.status(404);
     }
 
-    car = {...car, ...request.body };
+    car = { ...car, ...request.body };
 
     await repo.save(car);
 

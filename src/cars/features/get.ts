@@ -1,4 +1,4 @@
-import express from 'express';
+import { Request, Response } from 'express';
 import { query } from 'express-validator';
 import { AppDataSource } from '../../common/database/context';
 import { Car } from '../db/car';
@@ -18,20 +18,20 @@ const validator = [
         .withMessage('Take is required.'),
 ];
 
-const handler = async (request: express.Request, response: express.Response) => {
+const handler = async (request: Request, response: Response) => {
 
-    let where: FindOptionsWhere<Car> = { };
+    let where: FindOptionsWhere<Car> = {};
 
     if (request.query['make']) {
-        where = { ...where, make: Like(`${request.query['make']}%`)}
+        where = { ...where, make: Like(`${request.query['make']}%`) }
     }
 
     if (request.query['model']) {
-        where = { ...where, model: Like(`${request.query['model']}%`)}
+        where = { ...where, model: Like(`${request.query['model']}%`) }
     }
 
     if (request.query['color']) {
-        where = { ...where, color: Like(`${request.query['color']}%`)}
+        where = { ...where, color: Like(`${request.query['color']}%`) }
     }
 
     let cars = await AppDataSource.getRepository(Car).find({

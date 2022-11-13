@@ -1,5 +1,5 @@
 import { CommonRoutesConfig } from "../common/common.routes.config";
-import express from 'express';
+import { Application } from 'express';
 import { post } from "./features/post";
 import { put } from "./features/put";
 import { deleteById } from "./features/deleteById";
@@ -7,14 +7,13 @@ import { get } from "./features/get";
 import { getById } from "./features/getById";
 
 import { validationHandler } from "../common/handlers/validation.handler";
-import { errorHandler } from "../common/handlers/error.handler";
 
 export class UsersRoutes extends CommonRoutesConfig {
-    constructor(app: express.Application) {
+    constructor(app: Application) {
         super(app);
     }
 
-    configure(): express.Application {
+    configure(): Application {
 
         this.app.route(`/users`)
             .get(get.validator, validationHandler, get.handler)

@@ -1,4 +1,4 @@
-import express from 'express';
+import { Request, Response } from 'express';
 import { query } from 'express-validator';
 import { AppDataSource } from '../../common/database/context';
 import { User } from '../db/user';
@@ -18,7 +18,7 @@ const validator = [
         .withMessage('Take is required.'),
 ];
 
-const handler = async (request: express.Request, response: express.Response) => {
+const handler = async (request: Request, response: Response) => {
 
     let where: FindOptionsWhere<User> = {};
 

@@ -1,4 +1,4 @@
-require("express-async-errors");
+import 'express-async-errors';
 import express from 'express';
 import * as http from 'http';
 import cors from 'cors';
@@ -25,15 +25,11 @@ app.use(morgan('tiny'));
 // here we are adding middleware to allow cross-origin requests
 app.use(cors());
 
-const routes: Array<CommonRoutesConfig> = [];
-routes.push(new UsersRoutes(app));
-routes.push(new CarsRoutes(app));
+new UsersRoutes(app);
+new CarsRoutes(app);
 
 app.use(errorHandler);
 
 AppDataSource.initialize().then(s => console.log("Finished")).catch(err => console.log(err));
 
-
 app.listen(port, () => console.log('listening on port: ' + port))
-
-
