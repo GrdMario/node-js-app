@@ -6,7 +6,7 @@ import { validationHandler } from '../../common/handlers/validation.handler';
 import { Car } from '../db/car';
 
 const validator = checkSchema({
-    carId: {
+    id: {
         in: ['body'],
         errorMessage: 'Car id is required.',
         isNumeric: true
@@ -25,11 +25,6 @@ const validator = checkSchema({
         in: ['body'],
         errorMessage: 'User name is required',
         isNumeric: true
-    },
-    email: {
-        in: ['body'],
-        errorMessage: 'Email is required',
-        isEmail: true
     },
     color: {
         in: ['body'],

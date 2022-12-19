@@ -24,12 +24,6 @@ const validator = checkSchema({
             errorMessage: 'User name is required',
         }
     },
-    email: {
-        in: ['body'],
-        isEmail: {
-            errorMessage: 'Email is required',
-        }
-    },
     color: {
         in: ['body'],
         isAlphanumeric: {
